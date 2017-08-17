@@ -19,7 +19,7 @@ b.Make sure whether Ionic is installed or not <br/>
 
 &nbsp;&nbsp;&nbsp;&nbsp;To check it first navigate to command line <br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;and start typing the command as ionic -v <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;and type the command as ionic -v <br/>
 
 &nbsp;&nbsp;&nbsp;&nbsp;if the output shows ionic is not recognised as internal or external command than we can conclude ionic   is not installed locally<br/>
 
