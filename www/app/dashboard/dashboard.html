@@ -1,0 +1,19 @@
+<ion-view view-title="Dashbaord">
+  <ion-nav-bar class="bar-positive" align-title="center">
+    Welcome
+  </ion-nav-bar>
+  <ion-content has-subheader="false" class="padding">
+    <label class="item item-input">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="search"  ng-model="details.word" ng-change="linkClicked()" ng-model-options="{debounce: 1000}"  ng-click="onTextClick($event)"  autocapitalize="none">
+    </label>
+    <h4>{{details.synonymTitle}}</h4>
+    <h3 ng-if="synonymdefination.length > 1">Defination:</h3>
+    <p ng-if="synonymdefination.length > 1" ng-bind-html="synonymdefination | unsafe"></p>
+    <ion-list>
+      <ion-item class="royal" ng-repeat="word in synonymsarray track by $index" ng-click="showsynonyms(word)">
+        {{word}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+angular.module('starter', ['ionic', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -21,4 +21,62 @@ angular.module('starter', ['ionic'])
       StatusBar.styleDefault();
     }
   });
+})
+.config(function ($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('dashboard',{
+      cache:false,
+      url:'/dashboard',
+      templateUrl:'app/dashboard/dashboard.html',
+      controller: 'DashboardCtrl'
+    })
+    $urlRouterProvider.otherwise('/dashboard')
+})
+.controller('DashboardCtrl', function ($scope, Apiservices, $ionicLoading) {
+  $scope.details = {};
+  $scope.details.word = 'Thesaurasize';
+  $scope.synonymsarray = [];
+  $scope.synonymdefination = '';
+  $scope.linkClicked = function () {
+    $scope.synonymdefination = '';
+    $scope.synonymsarray = [];
+    $scope.details.synonymTitle = 'Searching for ' + $scope.details.word + ' synonyms and defination ...';
+    $ionicLoading.show({templateUrl: 'templates/spinner.html'});
+    Apiservices.getsynonymsanddefination($scope.details.word).then(function (res) {
+      console.info(res);
+      $ionicLoading.hide();
+      if (res) {
+        for (var i = 0; i < res.length; i++) {
+          console.info('how mant times i cakked');
+          if (res[i].hasOwnProperty('synonyms')) {
+            $scope.synonymsarray = $scope.synonymsarray.concat(res[i].synonyms);
+            $scope.synonymdefination = $scope.synonymdefination + res[i].definition + '<br/>'
+          } else if (res[i].hasOwnProperty('similarTo')) {
+            $scope.synonymsarray = $scope.synonymsarray.concat(res[i].similarTo);
+            $scope.synonymdefination = $scope.synonymdefination + res[i].definition + '<br/>'
+          }
+        }
+        $scope.details.synonymTitle = $scope.details.word + ' has ' + $scope.synonymsarray.length + ' synonyms';
+
+      } else {
+        $scope.details.synonymTitle = 'No synonyms found';
+      }
+    }, function (error) {
+      console.error(error);
+      $scope.synonymdefination = '';
+      $scope.synonymsarray = [];
+      $scope.details.synonymTitle = 'Please enter a word to search for synonyms';
+      $ionicLoading.hide();
+    });
+  };
+  $scope.showsynonyms = function (word) {
+    $scope.details.word = word;
+    $scope.linkClicked();
+  };
+})
+.filter('unsafe', function ($sce) {
+    return function (val) {
+       console.warn(val);
+        return $sce.trustAsHtml(val);
+    };
 })
