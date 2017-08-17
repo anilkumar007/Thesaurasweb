@@ -9,7 +9,7 @@ We recommend using the [Ionic CLI](https://github.com/ionic-team/ionic-cli) to c
 a.Make sure whether Nodejs is installed or not <br/>
 To check it first navigate to command line and type node -v <br/>
 if the output shows node is not recognised as internal or external command than we can conclude node is not installed locally<br/>
-To install [nodejs](https://nodejs.org/en/) and download only the recommanded for most users
+To install nodejs use these [link](https://nodejs.org/en/) and download only the recommanded for most users
 
 b.Make sure whether Ionic is installed or not <br/>
 
