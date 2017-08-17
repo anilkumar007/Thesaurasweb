@@ -34,7 +34,7 @@ angular.module('starter', ['ionic'])
 })
 .controller('DashboardCtrl', function ($scope, Apiservices, $ionicLoading) {
   $scope.details = {};
-  $scope.details.word = 'Thesaurasize';
+  // $scope.details.word = 'Thesaurasize';
   $scope.synonymsarray = [];
   $scope.synonymdefination = '';
   $scope.linkClicked = function () {
