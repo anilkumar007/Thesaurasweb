@@ -1,8 +1,9 @@
 Thesauras App Base
 ==============
-First clone the project by using the command as `git clone https://github.com/anilkumar007/Thesaurasweb.git`<br/>
+First clone the project by using the command as `git clone https://github.com/anilkumar007/Thesaurasweb.git` in command line<br/>
 
-A starting project for Ionic that optionally supports using custom SCSS.
+Go to the cloned directory by using the command as `cd Thesaurasweb` in command line <br/>
+
 
 ## Using this project
 
